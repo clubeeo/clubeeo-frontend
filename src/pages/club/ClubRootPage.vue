@@ -24,16 +24,16 @@
 
 <style lang="scss">
 main.clubeeo-wrapper {
+  margin: 0 auto;
+  display: flex;
+
+  overflow: hidden;
+
   @media (max-width: $breakpoint-xs-max) {
     display: flex;
     flex-direction: column-reverse !important;
     min-height: 100vh;
   }
-
-  margin: 0 auto;
-  display: flex;
-
-  overflow: hidden;
 
   section.main-content-section {
     @media (min-width: $breakpoint-xs-max) {
@@ -63,17 +63,17 @@ main.clubeeo-wrapper {
     justify-content: space-between;
     flex-grow: 1;
 
-    @media (min-width: $breakpoint-xs-max) {
-      width: 534px;
-      height: 100vh;
-    }
-
     background-color: #212121;
     padding: 0 30px;
     //padding: 210px 30px 30px;
 
     font-weight: 600;
     color: #ffffff;
+
+    @media (min-width: $breakpoint-xs-max) {
+      width: 534px;
+      height: 100vh;
+    }
 
     h1,
     h2,

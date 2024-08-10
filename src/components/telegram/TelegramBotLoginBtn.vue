@@ -13,7 +13,7 @@
 // source https://github.com/vchaptsev/vue-telegram-login/blob/master/src/vue-telegram-login.vue
 // MIT license https://github.com/vchaptsev/vue-telegram-login/blob/master/LICENSE
 
-import ClubButton from '../clubpage/ClubButton';
+import ClubButton from '../clubpage/ClubButton.vue';
 import { computed, ref } from 'vue';
 export default {
   name: 'telegram-bot-login-btn',
