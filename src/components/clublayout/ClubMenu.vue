@@ -143,7 +143,7 @@ import { state } from '@src/state';
 import { IClubSocialLinks } from '@src/lib/api/graphqlPartials';
 import { shortenAddress } from '@src/lib/components/chains';
 import MeInClubWidget from '@components/me/MeInClubWidget.vue';
-import _ from 'lodash';
+import isEqual from 'lodash-es/isEqual';
 import { useClubMenuStore } from '@stores/clubMenuStore';
 
 interface ILoadedClub {
@@ -332,7 +332,7 @@ export default defineComponent({
       } else {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { clubSlug, ...routeParamsForCheck } = $route.params;
-        return _.isEqual(routeParams, routeParamsForCheck);
+        return isEqual(routeParams, routeParamsForCheck);
       }
     };
 

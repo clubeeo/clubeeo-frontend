@@ -156,7 +156,6 @@ import { api } from 'boot/axios';
 import { requireParam } from '@src/uses/useAppRoute';
 import AppCard from '@src/modules/appManager/components/AppCard.vue';
 import ClubAppMenu from '@src/modules/appManager/components/ClubAppMenu.vue';
-import fromEntries from 'fromentries';
 import PropListEditor from '@components/dashboard/PropListEditor.vue';
 import {
   deserializeProp,
@@ -237,7 +236,7 @@ export default defineComponent({
       formData.title = clubApp.value.title;
       formData.appSlug = clubApp.value.appSlug;
       formData.menuIndex = clubApp.value.menuIndex;
-      formData.props = fromEntries(
+      formData.props = Object.fromEntries(
         Object.entries(result.data.clubApp.config).map(([k, v]) => [
           k,
           deserializeProp(v, app?.value?.config?.props?.[k]),
@@ -279,7 +278,7 @@ export default defineComponent({
         `/api/club/${clubSlug.value}/app/club-apps/clubAppSlug:${appSlug.value}`,
         {
           ...formData,
-          props: fromEntries(
+          props: Object.fromEntries(
             Object.entries(formData.props).map(([k, v]) => [
               k,
               serializeProp(v, app?.value?.config?.props?.[k]),

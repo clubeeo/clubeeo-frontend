@@ -81,7 +81,6 @@ import { assignBadge, getBadges } from '@src/api/clubApi';
 import BadgeRenderer from '@components/renderers/BadgeRenderer.vue';
 import ClubButton from '@components/clubpage/ClubButton.vue';
 import { IClubBadge, IMemberBadge } from '@src/models/badgeModels';
-import fromEntries from 'fromentries';
 import { Notify } from 'quasar';
 
 export default defineComponent({
@@ -142,7 +141,7 @@ export default defineComponent({
     };
 
     const userBadgesByBadgeId = computed(() =>
-      fromEntries(props.userBadges.map((ub) => [ub.clubBadge.id, ub]))
+      Object.fromEntries(props.userBadges.map((ub) => [ub.clubBadge.id, ub]))
     );
 
     return {

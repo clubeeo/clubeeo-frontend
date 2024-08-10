@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import { Notify } from 'quasar';
 import { api } from 'boot/axios';
 import { processingTypeOptionsMap } from '@src/modules/automation/triggerDefinitions';
-import fromEntries from 'fromentries';
 
 export interface ITrigger {
   id: number | null;
@@ -111,13 +110,13 @@ export const useAppTriggerStore = defineStore('trigger', {
 
         sourceApp: state.sourceApp?.value,
         eventType: state.eventType?.value,
-        eventProps: fromEntries(
+        eventProps: Object.fromEntries(
           Object.entries(state.eventProps).map(([k, v]) => [k, v.value])
         ),
 
         targetApp: state.targetApp?.value,
         actionType: state.actionType?.value,
-        actionProps: fromEntries(
+        actionProps: Object.fromEntries(
           Object.entries(state.actionProps).map(([k, v]) => [k, v.value])
         ),
 
@@ -166,13 +165,13 @@ export const useAppTriggerStore = defineStore('trigger', {
           actionType: data.actionType
             ? { value: String(data.actionType), label: String(data.actionType) }
             : null,
-          eventProps: fromEntries(
+          eventProps: Object.fromEntries(
             Object.entries(data.eventProps).map(([k, v]) => [
               k,
               { value: v, label: v },
             ])
           ),
-          actionProps: fromEntries(
+          actionProps: Object.fromEntries(
             Object.entries(data.actionProps).map(([k, v]) => [
               k,
               { value: v, label: v },

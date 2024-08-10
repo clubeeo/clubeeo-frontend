@@ -129,7 +129,6 @@ import AppCard from '@src/modules/appManager/components/AppCard.vue';
 import { Notify } from 'quasar';
 import AppBindingCard from '@src/modules/automation/components/AppBindingCard.vue';
 import PropListEditor from '@components/dashboard/PropListEditor.vue';
-import fromEntries from 'fromentries';
 import {
   IPropValue,
   IRegistryItem,
@@ -206,7 +205,7 @@ export default defineComponent({
         };
       }>(`/api/club/${clubSlug.value}/app/registry/${appKey.value}/install`, {
         ...formData,
-        props: fromEntries(
+        props: Object.fromEntries(
           Object.entries(formData.props).map(([k, v]) => [
             k,
             serializeProp(v, app?.value?.config?.props?.[k]),

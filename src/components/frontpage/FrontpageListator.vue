@@ -177,7 +177,6 @@ import MeInClubWidget from '@components/me/MeInClubWidget.vue';
 import { postPostReaction, PostReactionTypes } from '@src/api/reactionApi';
 import { getPostList, IPostView } from '@src/api/postApi';
 import ReactionBtn from '@components/elements/ReactionBtn.vue';
-import fromEntries from 'fromentries';
 
 const reactionEmoji = {
   upvote: '👍',
@@ -247,7 +246,7 @@ export default defineComponent({
 
     const postsView = computed(() => {
       return posts.value.map((item) => {
-        let shownReactions = fromEntries(
+        let shownReactions = Object.fromEntries(
           // @ts-expect-error temp fix
           reactionSlugs
             .map((v) => {
@@ -268,7 +267,7 @@ export default defineComponent({
           };
         }
 
-        const expandReactions = fromEntries(
+        const expandReactions = Object.fromEntries(
           // @ts-expect-error temp fix
           reactionSlugs
             .map((v) => {

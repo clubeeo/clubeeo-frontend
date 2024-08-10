@@ -2,6 +2,8 @@
   "extends": "@quasar/app-webpack/tsconfig-preset",
   "compilerOptions": {
     "baseUrl": ".",
+    "lib": ["esnext", "dom"],
+    "esModuleInterop": true,
     "paths": {
       "boot/*": ["src/boot/*"],
       "@src/*": ["src/*"],
