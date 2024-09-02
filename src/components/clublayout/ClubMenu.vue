@@ -7,7 +7,7 @@
         background-color: rgb(29 29 39);
       "
     >
-      <div style="padding: 12px 8px 12px 8px; width: 223px">
+      <div v-if="club" style="padding: 12px 8px 12px 8px; width: 223px">
         <q-list style="margin: 0">
           <q-btn
             flat
@@ -141,7 +141,6 @@ import {
 } from 'vue';
 import { state } from '@src/state';
 import { IClubSocialLinks } from '@src/lib/api/graphqlPartials';
-import { shortenAddress } from '@src/lib/components/chains';
 import MeInClubWidget from '@components/me/MeInClubWidget.vue';
 import isEqual from 'lodash-es/isEqual';
 import { useClubMenuStore } from '@stores/clubMenuStore';
@@ -169,6 +168,19 @@ interface ILoadedClub {
       }[];
     };
   };
+  settings?: {
+    isPremium: boolean;
+  };
+}
+
+interface IMenuItem {
+  type?: string;
+  title: string;
+  toName?: string;
+  toParams?: Record<string, string>;
+  icon?: string;
+  configurable?: boolean;
+  url?: string;
 }
 
 export default defineComponent({
@@ -204,7 +216,7 @@ export default defineComponent({
 
     const $menu = useClubMenuStore();
 
-    const linksList = computed(() => $menu.menuView);
+    const linksList = computed(() => $menu.menuView as IMenuItem[]);
 
     watch(
       () => props?.club?.meInClub,
@@ -215,105 +227,6 @@ export default defineComponent({
         }),
       { deep: true }
     );
-
-    // const linksList2 = computed(() => {
-    //   const result: Array<IMenuItem> = [
-    //     {
-    //       title: 'home',
-    //       toName: 'club-home'
-    //     }
-    //   ];
-    //
-    //   // const telegramLink = legacyMeInClub?.services?.tg?.chatInviteLink;
-    //   // const discordLink = props?.club?.socialLinks?.discord;
-    //
-    //   if (menuLoaded.value) {
-    //     // if (telegramLink || discordLink) {
-    //     //   result.push({ type: 'split', title: 'CLUB RESOURCES' });
-    //     //
-    //     //   if (telegramLink) result.push({
-    //     //     title: 'telegram',
-    //     //     url: telegramLink,
-    //     //     icon: mapSocialToIcon('telegram')
-    //     //   });
-    //     //
-    //     //   if (discordLink) result.push({
-    //     //     title: 'discord',
-    //     //     url: discordLink,
-    //     //     icon: mapSocialToIcon('discord')
-    //     //   });
-    //     // }
-    //
-    //     const meInClub = props?.club?.meInClub;
-    //
-    //     if (meInClub?.menu.items) {
-    //       meInClub?.menu.items.forEach(item => {
-    //         if (['posts', 'posts-new'].includes(item.appName)) {
-    //           result.push({
-    //             title: item.title,
-    //             toName: `club-app-${item.appName}`,
-    //             toParams: {
-    //               appSlug: item.appSlug
-    //             },
-    //             configurable: meInClub.isAdmin || false,
-    //           });
-    //         } else {
-    //           result.push({
-    //             title: item.title,
-    //             toName: 'club-dynamic-app',
-    //             toParams: {
-    //               appSlug: item.appSlug
-    //             },
-    //             configurable: meInClub.isAdmin || false,
-    //           });
-    //         }
-    //       });
-    //     }
-    //
-    //     if (meInClub?.isAdmin) {
-    //       result.push(
-    //         {
-    //           type: 'split',
-    //           title: 'ADMINISTRATION'
-    //         },
-    //         // {
-    //         //   title: 'edit profile',
-    //         //   toName: 'club-profile-edit'
-    //         // },
-    //         // {
-    //         //   title: 'Club page',
-    //         //   toName: 'club-roles'
-    //         // },
-    //         {
-    //           title: 'members',
-    //           toName: 'club-members'
-    //         },
-    //         {
-    //           title: 'roles',
-    //           toName: 'club-roles'
-    //         },
-    //         {
-    //           title: 'badges',
-    //           toName: 'club-badges'
-    //         },
-    //         {
-    //           title: 'apps',
-    //           toName: 'club-apps'
-    //         },
-    //         {
-    //           title: 'automation',
-    //           toName: 'club-automation'
-    //         },
-    //         {
-    //           title: 'analytics',
-    //           toName: 'club-analytics'
-    //         },
-    //       );
-    //     }
-    //   }
-    //
-    //   return result;
-    // });
 
     const isCurrentRoute = (
       routeName: string,
@@ -342,12 +255,11 @@ export default defineComponent({
       isCurrentRoute,
       linksList,
       menuLoaded,
-      shortenAddress,
-      onAppSettingsClicked: async (link: { toParams: { appSlug: string } }) => {
+      onAppSettingsClicked: async (link: IMenuItem) => {
         await $router.push({
           name: 'club-app-manage',
           params: {
-            appSlug: link.toParams.appSlug,
+            appSlug: link.toParams?.appSlug,
           },
         });
       },
