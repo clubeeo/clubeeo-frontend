@@ -8,7 +8,6 @@
           expand-separator
         >
           <template v-slot:header>
-            <!-- <q-item clickable v-ripple @click="menuItemClick(item)"> -->
             <q-item-section avatar>
               <q-avatar
                 :round="!item.logoMode || item.logoMode === 'round'"
@@ -100,9 +99,6 @@ export default defineComponent({
       columns,
       rows,
       isLoading,
-      menuItemClick: (item: any) => {
-        console.log('menuItemClick', item);
-      },
       screenRows: computed(() => {
         return rows.value.slice(0, expanded.value ? 50 : 10);
       }),

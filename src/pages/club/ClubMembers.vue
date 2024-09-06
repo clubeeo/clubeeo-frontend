@@ -83,27 +83,7 @@
 
           <div class="col"></div>
 
-          <div class="col">
-            <q-input
-              label="wallet"
-              dark
-              outlined
-              dense
-              v-model="searchWalletText"
-              class="q-pb-md"
-              @keypress="onSearchWalletClick"
-            >
-              <template v-slot:append>
-                <q-icon
-                  v-if="searchWalletText !== ''"
-                  name="close"
-                  @click="searchWalletText = ''"
-                  class="cursor-pointer"
-                />
-                <q-icon name="search" @click="onSearchWalletClick" />
-              </template>
-            </q-input>
-          </div>
+          <div class="col"></div>
         </div>
 
         <members-table
@@ -173,12 +153,6 @@ interface IFetchedUser {
   id: number;
   screenName: string;
   imgUrl: string;
-  wallets: {
-    id: number;
-    address: string;
-    chain: string;
-    chainNorm: string;
-  }[];
   userExts: {
     id: number;
     service: string;
@@ -195,11 +169,6 @@ interface IFetchedUser {
     id: number;
     clubRole: {
       name: string;
-    };
-    clubRoleToken: {
-      clubRole: {
-        name: string;
-      };
     };
   }[];
 }
@@ -219,7 +188,6 @@ export default defineComponent({
     const slug = computed(() =>
       $route.params.clubSlug ? String($route.params.clubSlug) : null
     );
-    const searchWalletText = ref('');
     const searchNameText = ref('');
     const pagination = ref<IPagination>({
       page: 1,
@@ -251,7 +219,6 @@ export default defineComponent({
               id
               name
               users(
-                searchWallet:"${searchWalletText.value}",
                 searchName:"${searchNameText.value}",
                 page:${pagination.value.page},
                 take:${pagination.value.rowsPerPage},
@@ -263,12 +230,6 @@ export default defineComponent({
                   imgUrl
                   memberInClub(slug:"${slug.value}") {
                     id
-                  }
-                  wallets {
-                    id
-                    address
-                    chain
-                    chainNorm
                   }
                   userExts {
                     id
@@ -283,11 +244,6 @@ export default defineComponent({
                     id
                     clubRole {
                       name
-                    }
-                    clubRoleToken {
-                      clubRole {
-                        name
-                      }
                     }
                   }
                 }
@@ -334,10 +290,7 @@ export default defineComponent({
           rolesView: user.rolesInClub
             .map((role) => {
               return {
-                name:
-                  role.clubRole?.name ||
-                  role.clubRoleToken?.clubRole?.name ||
-                  'unknown',
+                name: role.clubRole?.name || 'unknown',
               };
             })
             .filter((role) =>
@@ -388,10 +341,6 @@ export default defineComponent({
       }
     };
 
-    const onSearchWalletClick = async () => {
-      await load();
-    };
-
     const onSearchNameClick = async () => {
       await load();
     };
@@ -436,7 +385,6 @@ export default defineComponent({
       usersView,
       selectedMembers,
       message,
-      searchWalletText,
       searchNameText,
       columns,
       shortenAddress,
@@ -445,7 +393,6 @@ export default defineComponent({
       onExportCSV,
       onMakeAnOffer,
       onSendMessageClick,
-      onSearchWalletClick,
       onSearchNameClick,
       onRequest,
       isLoading,

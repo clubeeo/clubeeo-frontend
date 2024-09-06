@@ -46,8 +46,6 @@ export const useClub = () => {
     isMember: null,
     isLoggedIn: null,
     services: {},
-    wallets: {},
-    mainWallet: {},
   });
 
   const pushToClubRoot = async () => {

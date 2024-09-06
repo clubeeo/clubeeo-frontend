@@ -107,11 +107,7 @@ export default defineComponent({
       return !$q.platform.is.safari;
     });
 
-    const meInClub = state.$club.meInClub;
-
     const isLoggedIn = computed(() => {
-      if (meInClub.wallets.eth?.loggedIn) return true;
-      if (meInClub.wallets.near?.loggedIn) return true;
       return false;
     });
 

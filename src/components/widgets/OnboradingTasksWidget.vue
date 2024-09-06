@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, onMounted, ref, watch } from 'vue';
+import { defineComponent, inject, onMounted, ref, watch } from 'vue';
 import { state } from '@src/state';
 import { IClubStyle } from '@src/models/clubStyle';
 import ClubButton from '@components/clubpage/ClubButton.vue';
@@ -97,14 +97,6 @@ export default defineComponent({
     });
 
     const clubStyle = inject<IClubStyle>('clubStyle');
-
-    const meInClub = state.$club.meInClub;
-
-    const isLoggedIn = computed(() => {
-      if (meInClub.wallets.eth?.loggedIn) return true;
-      if (meInClub.wallets.near?.loggedIn) return true;
-      return false;
-    });
 
     const club = state.$club.club;
 
@@ -180,7 +172,6 @@ export default defineComponent({
 
     return {
       meInClub: state.$club.meInClub,
-      isLoggedIn,
       clubWelcomeDefault,
       clubStyle,
       mapSocialToIcon,

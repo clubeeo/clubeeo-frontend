@@ -86,25 +86,6 @@ export interface IMeInClub {
       loggedIn: boolean | null;
     };
   };
-  wallets: {
-    eth?: {
-      loggedIn: boolean | null;
-      enabled: boolean | null;
-    };
-    near?: {
-      loggedIn: boolean | null;
-      enabled: boolean | null;
-    };
-  };
-  mainWallet:
-    | {
-        id: number;
-        address: string;
-        chain: string | 'eth' | 'near';
-        createdAt: string;
-        updatedAt: string;
-      }
-    | Record<string, never>;
 }
 
 interface IGetClubResponse {

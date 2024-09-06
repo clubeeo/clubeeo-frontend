@@ -196,8 +196,6 @@ export default defineComponent({
     });
 
     const isLoggedIn = computed(() => {
-      if (meInClub.wallets.eth?.loggedIn) return true;
-      if (meInClub.wallets.near?.loggedIn) return true;
       return false;
     });
 

@@ -23,13 +23,6 @@
             <q-item-section>
               <div>
                 <role-renderer v-if="ucr.clubRole" :role="ucr.clubRole" />
-                <template v-else-if="ucr.clubRoleToken">
-                  <role-renderer
-                    :role="ucr.clubRoleToken.clubRole"
-                    :disabled="!ucr.enabled"
-                  />
-                  [token-based role]
-                </template>
               </div>
             </q-item-section>
           </q-item>
