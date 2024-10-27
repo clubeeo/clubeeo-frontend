@@ -59,7 +59,6 @@
 <script lang="ts">
 import ClubPage from '../../components/clublayout/ClubPage.vue';
 import { computed, defineComponent, onMounted, ref } from 'vue';
-import { shortenAddress } from '@src/lib/components/chains';
 import { defaultPagination } from '@src/lib/components/table';
 import { api } from 'boot/axios';
 import { useRoute } from 'vue-router';
@@ -179,7 +178,6 @@ export default defineComponent({
       columns,
       defaultPagination,
       createRole,
-      shortenAddress,
     };
   },
 });

@@ -19,15 +19,12 @@
       <!--        :social-links='{}'-->
       <!--      />-->
     </div>
-
-    <!--    <div>Active wallet: {{ shortenAddressOnChain(meInClub.mainWallet) }}</div>-->
   </club-page>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue';
 import ClubPage from '@components/clublayout/ClubPage.vue';
-import { shortenAddressOnChain } from '@src/lib/components/chains';
 
 export default defineComponent({
   components: { ClubPage },
@@ -46,7 +43,7 @@ export default defineComponent({
       // club,
       // clubLoaded,
       // meInClub: computed(() => club.value.meInClub || {}),
-      shortenAddressOnChain,
+
     };
   },
 });

@@ -28,17 +28,6 @@
       </q-td>
     </template>
 
-    <!--    <template v-slot:body-cell-wallets='props'>-->
-    <!--      <q-td :props='props'>-->
-    <!--        <div-->
-    <!--          v-for='(wallet, i) in props.row.wallets'-->
-    <!--          v-bind:key='i'-->
-    <!--        >-->
-    <!--          &lt;!&ndash;          {{ shortenAddress(wallet) }}&ndash;&gt;-->
-    <!--          {{ wallet.address }}-->
-    <!--        </div>-->
-    <!--      </q-td>-->
-    <!--    </template>-->
     <template v-for="(_, slotName) in $slots" v-slot:[slotName]="slotData">
       <slot :name="slotName" v-bind="slotData" />
     </template>
@@ -62,21 +51,12 @@
         </div>
       </q-td>
     </template>
-
-    <template v-slot:body-cell-wallets="props">
-      <q-td :props="props" style="font-size: 0.7rem">
-        <div v-for="(wallet, i) in props.row.wallets" v-bind:key="i">
-          {{ shortenAddress ? shortenAddressFunction(wallet) : wallet.address }}
-        </div>
-      </q-td>
-    </template>
   </q-table>
 </template>
 
 <script lang="ts">
 import { defaultPagination } from '@src/lib/components/table';
 import { defineComponent } from 'vue';
-import { shortenAddress as shortenAddressFunction } from '@src/lib/components/chains';
 
 const columns = [
   {
@@ -88,19 +68,11 @@ const columns = [
   },
   { name: 'roles', align: 'left', label: 'roles', field: 'rolesView' },
   { name: 'userExts', align: 'left', label: 'socials', field: 'userExts' },
-  { name: 'wallets', align: 'right', label: 'wallet', field: 'wallets' },
 ];
 
 export default defineComponent({
-  props: {
-    shortenAddress: {
-      type: Boolean,
-      default: false,
-    },
-  },
   setup() {
     return {
-      shortenAddressFunction,
       columns,
       defaultPagination,
     };

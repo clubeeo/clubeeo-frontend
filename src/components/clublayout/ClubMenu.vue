@@ -107,15 +107,17 @@
       </div>
     </q-scroll-area>
 
-    <me-in-club-widget
-      v-if="club && club.meInClub.loggedIn"
-      :me-in-club="club.meInClub"
-      :class="{ clubButtonActive: isCurrentRoute('club-me') }"
-      style="cursor: pointer"
-      @click="$router.push({ name: 'club-me' })"
-    >
-      <q-btn icon="fa-solid fa-user" size="sm" dense flat />
-    </me-in-club-widget>
+    <div class="q-mx-sm">
+      <me-in-club-widget
+        v-if="club && club.meInClub.loggedIn"
+        :me-in-club="club.meInClub"
+        :class="{ clubButtonActive: isCurrentRoute('club-me') }"
+        style="cursor: pointer"
+        @click="$router.push({ name: 'club-me' })"
+      >
+        <q-btn icon="fa-solid fa-user" size="sm" dense flat />
+      </me-in-club-widget>
+    </div>
   </div>
 </template>
 

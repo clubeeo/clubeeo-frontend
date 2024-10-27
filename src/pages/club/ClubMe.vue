@@ -17,10 +17,6 @@
 
     <!--    <hr style='border-top: 0; width: 90%' />-->
 
-    <div class="q-pb-md">
-      Active wallet: {{ shortenAddressOnChain(meInClub.mainWallet) }}
-    </div>
-
     <div
       v-for="badge in userData.user.badges"
       :key="badge.id"
@@ -68,7 +64,6 @@ import { useRoute } from 'vue-router';
 import { IClubStyle } from '@src/models/clubStyle';
 import ClubHero from '@components/clubpage/ClubHero.vue';
 import SocialLinks from '@components/clubpage/SocialLinks.vue';
-import { shortenAddressOnChain } from '@src/lib/components/chains';
 import BadgeRenderer from '@components/renderers/BadgeRenderer.vue';
 import { ILoadMemberResponse, loadMe } from '@src/api/clubApi';
 
@@ -111,7 +106,6 @@ export default defineComponent({
       clubLoaded,
       userData,
       meInClub: computed(() => club.value.meInClub || {}),
-      shortenAddressOnChain,
     };
   },
 });

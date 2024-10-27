@@ -13,19 +13,9 @@
       <div style="font-size: 0.75rem; font-weight: bold">
         {{ meInClub.screenName }}
       </div>
-      <div style="font-size: 0.75rem">
-        {{ shortenAddress(meInClub.mainWallet) }}
-      </div>
     </div>
 
-    <div
-      class="flex q-pa-xs"
-      style="
-        flex-direction: column;
-        justify-content: center;
-        padding-right: 6px;
-      "
-    >
+    <div class="flex q-pa-xs" style="flex-direction: column; justify-content: center; padding-right: 6px">
       <div>
         <slot />
       </div>
@@ -36,7 +26,7 @@
 <style lang="scss" scoped>
 .meInClubWidget {
   height: 48px;
-  width: 223px;
+  width: 100%;
   background-color: rgb(29 29 39);
   justify-content: space-between;
   border-radius: 6px 6px 0 0;
@@ -45,7 +35,6 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { shortenAddress } from '@src/lib/components/chains';
 
 interface IMeInClub {
   loggedIn: boolean;
@@ -72,9 +61,7 @@ export default defineComponent({
   },
 
   setup() {
-    return {
-      shortenAddress,
-    };
+    return {};
   },
 });
 </script>

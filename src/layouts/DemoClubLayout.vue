@@ -161,14 +161,6 @@
                 <div style="font-size: 0.75rem; font-weight: bold">
                   John Doe
                 </div>
-                <div style="font-size: 0.75rem">
-                  {{
-                    shortenAddress({
-                      address: '0x000000000000000',
-                      chain: 'eth',
-                    })
-                  }}
-                </div>
               </div>
 
               <div
@@ -440,7 +432,6 @@ const clubList = [
 ];
 
 import { computed, defineComponent, ref } from 'vue';
-import { shortenAddress } from '@src/lib/components/chains';
 
 export default defineComponent({
   name: 'MainLayout',
@@ -467,7 +458,6 @@ export default defineComponent({
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
-      shortenAddress,
     };
   },
 });

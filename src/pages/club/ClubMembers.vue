@@ -139,7 +139,6 @@
 import { computed, defineComponent, onMounted, ref } from 'vue';
 import { api } from 'boot/axios';
 import { useRoute } from 'vue-router';
-import { shortenAddress } from '@src/lib/components/chains';
 import MembersTable from '@components/members/MembersTable.vue';
 import { Notify } from 'quasar';
 import ClubButton from '@components/clubpage/ClubButton.vue';
@@ -387,7 +386,6 @@ export default defineComponent({
       message,
       searchNameText,
       columns,
-      shortenAddress,
       pagination,
       isPremium,
       onExportCSV,
