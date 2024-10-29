@@ -1,13 +1,13 @@
 <template>
   <club-button
-    label='Login to Telegram'
-    scheme='inverse'
-    icon='fab fa-telegram-plane'
-    :href='telegramLoginUrl'
+    label="Login via Telegram"
+    scheme="inverse"
+    icon="fab fa-telegram-plane"
+    :href="telegramLoginUrl"
   />
 </template>
 
-<script lang='js'>
+<script lang="js">
 /* eslint-disable */
 
 // source https://github.com/vchaptsev/vue-telegram-login/blob/master/src/vue-telegram-login.vue
